@@ -1,6 +1,10 @@
 import './bootstrap';
-import Swal from 'sweetalert2';
 
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
+
+import Swal from 'sweetalert2';
 document.getElementById('show-alert').addEventListener('click', () => {
     Swal.fire({
         title: 'Hello, Laravel 10!',
