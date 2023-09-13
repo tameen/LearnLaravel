@@ -25,6 +25,7 @@ class ProductFactory extends Factory
             'stock' => rand(5, 10),
             'price' => rand(50, 1000),
             'store_id' => 1,
+            'user_id' => 1,
         ];
     }
 }

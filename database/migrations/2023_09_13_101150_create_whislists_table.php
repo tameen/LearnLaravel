@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coupons', function (Blueprint $table) {
+        Schema::create('whislists', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->default(0);
-            $table->string('promo',20);
-            $table->tinyInteger('percentage')->default(0);;
-            $table->text('comment')->nullable();
-            $table->foreignId('store_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('product_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('whislists');
     }
 };
