@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('contact_type', ['mobile', 'lineland', 'other'])->default('other');
             $table->text('address')->nullable();
             $table->enum('role', ['super', 'admin', 'agent', 'user'])->default('user');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
             $table->rememberToken();
             $table->timestamps();
         });

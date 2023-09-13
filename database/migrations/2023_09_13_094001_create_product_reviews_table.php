@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('rating')->default(0);
             $table->text('review')->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
             $table->boolean('published')->default(true);
 
             $table->foreignId('product_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');

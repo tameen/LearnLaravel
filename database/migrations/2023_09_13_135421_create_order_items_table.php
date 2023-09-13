@@ -17,7 +17,7 @@ return new class extends Migration
             $table->tinyInteger('quantity')->default(0);
             $table->float('price')->default(0);
             $table->float('discount')->default(0);
-            $table->enum('status', ['available', 'pending', 'other'])->default('other');
+            $table->enum('status', ['available', 'pending', 'active', 'inactive', 'other'])->default('other');
 
             $table->foreignId('order_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('product_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');

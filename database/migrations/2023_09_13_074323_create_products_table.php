@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->float('price')->default(0);
             $table->float('discount')->default(0);
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
             $table->boolean('published')->default(true);
             $table->boolean('featured')->default(false);
             $table->integer('stock')->default(0);

@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
+            $table->float('amount')->default(0);
+            $table->enum('source', ['cod', 'card', 'other'])->default('other');
             $table->enum('status', ['active', 'inactive', 'other'])->default('other');
+            $table->text('note')->nullable();
 
-            $table->foreignId('product_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('order_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
-
-            // $table->unsignedBigInteger('product_id');
-            // $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade');
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('payments');
     }
 };

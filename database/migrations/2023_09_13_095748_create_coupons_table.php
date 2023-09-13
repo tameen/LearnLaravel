@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->default(0);
+            $table->enum('type', ['general', 'other'])->default('other');
             $table->string('promo',20);
             $table->tinyInteger('percentage')->default(0);;
             $table->text('comment')->nullable();
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
             $table->foreignId('store_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

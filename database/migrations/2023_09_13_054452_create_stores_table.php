@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('contact_type', ['mobile', 'lineland', 'other'])->default('other');
             $table->string('cover')->nullable();
             $table->string('logo')->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
             // $table->boolean('published')->default(false);
 
             $table->string('address1')->nullable();

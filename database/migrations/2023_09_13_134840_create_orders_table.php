@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('number')->nullable();
             $table->enum('source', ['web', 'ios', 'android', 'other'])->default('other');
-            $table->enum('status', ['placed', 'pending', 'intransit', 'shipping', 'other'])->default('other');
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
 
             $table->boolean('active')->default(true);
             $table->text('instruction')->nullable();

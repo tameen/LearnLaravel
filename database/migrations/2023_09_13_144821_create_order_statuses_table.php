@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('whislists', function (Blueprint $table) {
+        Schema::create('order_statuses', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
+            $table->enum('status', ['pending', 'placed', 'delivered', 'active', 'inactive', 'other'])->default('other');
+            $table->foreignId('order_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('product_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('whislists');
+        Schema::dropIfExists('order_statuses');
     }
 };
