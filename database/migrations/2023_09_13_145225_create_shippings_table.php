@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->float('amount')->default(0);
-            $table->enum('source', ['cod', 'credit', 'debet', 'apple', 'google', 'other'])->default('other');
-            $table->enum('status', ['pending', 'complete', 'refund', 'partical', 'active', 'inactive', 'other'])->default('other');
-            $table->text('note')->nullable();
-
+            $table->enum('source', ['tcs', 'other'])->default('other');
+            $table->enum('status', ['active', 'inactive', 'other'])->default('other');
+            $table->float('cost')->default(0);
             $table->foreignId('order_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('shippings');
     }
 };

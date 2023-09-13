@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coupons', function (Blueprint $table) {
+        Schema::create('shipping_comments', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['general', 'store', 'other'])->default('other');
-            $table->string('promo',20);
-            $table->tinyInteger('percentage')->default(0);;
-            $table->text('comment')->nullable();
+            $table->text('comment');
             $table->enum('status', ['active', 'inactive', 'other'])->default('other');
-            // $table->foreignId('store_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('shipping_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('shipping_comments');
     }
 };
