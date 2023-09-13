@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserTableSeeder::class);
         \App\Models\User::factory(1)->create();
+        \App\Models\Store::factory(1)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
