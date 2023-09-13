@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->integer('stock')->default(0);
             $table->foreignId('store_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->index()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
