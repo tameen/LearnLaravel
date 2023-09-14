@@ -19,8 +19,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('contact')->nullable();
+            $table->string('phone')->nullable();
             $table->enum('contact_type', ['mobile', 'lineland', 'other'])->default('other');
+            $table->string('contact')->nullable();
             $table->text('address')->nullable();
             $table->enum('role', ['super', 'admin', 'agent', 'user'])->default('user');
             $table->enum('status', ['active', 'inactive', 'other'])->default('other');
