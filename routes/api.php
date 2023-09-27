@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +17,3 @@ use App\Http\Controllers\API\PostController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::apiResource('post', PostController::class)->except([
-    'create', 'show', 'edit'
-]);

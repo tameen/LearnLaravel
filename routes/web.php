@@ -1,11 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AgentController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,31 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Auth::routes();
+Route::get('/store', 'App\Http\Controllers\StoreController@index')->name('stores.index')->middleware('auth');
+Route::get('/store/getstore', 'App\Http\Controllers\StoreController@getStore')->name('stores.get')->middleware('auth');
+Route::post('/store/create', 'App\Http\Controllers\StoreController@store')->middleware('auth');
+Route::delete('/store/delete/{id}', 'App\Http\Controllers\StoreController@destroy')->middleware('auth');
+Route::put('store/update/{id}', 'App\Http\Controllers\StoreController@update')->middleware('auth');
+Route::get('store/json/{id}', 'App\Http\Controllers\StoreController@jsonData')->middleware('auth');
+Route::get('/store/{id}', 'App\Http\Controllers\StoreController@show')->middleware('auth');
 
-// post routes
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-Route::middleware(['auth', 'verified', 'role:admin'] )->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-}); // group admin middleware
 
-Route::middleware(['auth', 'verified', 'role:agent'] )->group(function () {
-    Route::get('/agent/dashboard', [AgentController::class, 'dashboard'])->name('agent.dashboard');
-}); // group agent middleware
 
-Route::middleware(['auth', 'verified', 'role:user'] )->group(function () {
-    Route::get('dashboard', function () { return view('dashboard'); })->name('dashboard');
-}); // group user middleware
-
-require __DIR__.'/auth.php';

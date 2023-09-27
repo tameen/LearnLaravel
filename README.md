@@ -64,3 +64,49 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+## Store Application 
+## -------------------------------------------------------------------------------------------
+## XAMPP Installation
+Windows Installer: Download and install [xampp](https://www.apachefriends.org/download.html).
+This will install PHP, MySQL, Apache Server
+## Composer Installation
+Windows Installer: [Download Composer](https://getcomposer.org/download)
+The installer - which requires that you have PHP already installed - will download Composer for you and set up your PATH environment variable so you can simply call composer from any directory.em 
+## Laravel Installation
+composer global require laravel/installer 
+cd  Documents
+laravel new storeapp
+cd storeapp
+php serve artisan 
+
+## Model and Controller
+php artisan make:controller StoreController
+php artisan make:model Store
+
+## Migration
+php artisan make:migration create_stores_table
+php artisan migrate
+php artisan migrate:refresh - to refresh table structure
+php artisan migrate:rollback - to rollback all
+
+## Auth 
+composer require laravel/ui
+php artisan ui vue –auth
+
+## .env file: update mysql database name and connection details.
+
+## Datatables
+composer require yajra/laravel-datatables
+npm i laravel-datatables-vite --save-dev
+npm install
+npm run dev
+php artisan datatables:make Store
+
+## To seed Tables (Insert Dummy Data)
+php artisan make:factory StoreFactory --model=Store
+php artisan make:seed StoreTableSeeder
+php artisan db:seed --class=StoreTableSeeder
+
